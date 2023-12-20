@@ -16,26 +16,29 @@ To use this program for probabilistic inference within a Bayesian Belief Network
 
 - Define the BBN Structure:
 
-1. Create nodes and specify their parents.
-2. In the "Define all Nodes" section, provide the node's name as constructor input "name". Additionally, set the variable name for the node, and keep it same as the input given to the constructor.
-3. In the "Define Network Structure" section, use [currentNode].addParent([parentNode]) to define network relations. Order is important.
+  1. Create nodes and specify their parents.
+  2. In the "Define all Nodes" section, provide the node's name as constructor input "name". Additionally, set the variable name for the node, and keep it same as the input given to the constructor.
+  3. In the "Define Network Structure" section, use [currentNode].addParent([parentNode]) to define network relations. Order is important.
 
 - Set Conditional Probability Distributions (CPD):
 
-1. In the "Specify CPD Values" section, use [currentNode].probabilities.addProbability([key],[probability]) to set CPD values.
-2. Keep [key] as a string with the value "T" or "F" only.
-3. For nodes with multiple parents, use [key] written as "TTFF..." with the order of T and F corresponding to the order in which parents were added.
-4. Keep [probability] as a double value corresponding to the key.
+  1. In the "Specify CPD Values" section, use [currentNode].probabilities.addProbability([key],[probability]) to set CPD values.
+  2. Keep [key] as a string with the value "T" or "F" only.
+  3. For nodes with multiple parents, use [key] written as "TTFF..." with the order of T and F corresponding to the order in which parents were added.
+  4. Keep [probability] as a double value corresponding to the key.
 
 - Perform Probabilistic Inference:
 
-1. Provide evidence and a target node to calculate probabilities or predict outcomes.
-2. Before calling any inference function, enter evidence for each node using evidence.put([key],[value]).
-3. Set the target node for the function using target.put([key],[value]). Similar to evidence.
-4. When calling predictOutcome, [value] for the target can be any string. Default is set as "?" (No need to change).
+  1. Provide evidence and a target node to calculate probabilities or predict outcomes.
+  2. Before calling any inference function, enter evidence for each node using evidence.put([key],[value]).
+  3. Set the target node for the function using target.put([key],[value]). Similar to evidence.
+  4. When calling predictOutcome, [value] for the target can be any string. Default is set as "?" (No need to change).
 
 
 # Example:
+
+Predicts if the target arriveOnTime == True or False, based on provided evidence Rain == True and Traffic == True.
+This example network would contain Rain and Traffic as parent nodes of arriveOnTime.
 
 ```
 evidence.put("Rain", "T");
